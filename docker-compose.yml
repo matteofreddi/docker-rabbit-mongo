@@ -1,0 +1,33 @@
+version: '3'
+services:
+  rabbit:
+    image: "rabbitmq:3-management"
+    hostname: "rabbit"
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    container_name: "rabbit"
+    volumes:
+      - "./rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins"
+      - "./rabbitmq:/var/lib/rabbitmq"
+  mongo:
+    image: mongo:latest
+    container_name: "mongo"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./mongodb/data/db:/data/db
+    ports:
+      - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+  mongo-express:
+    image: mongo-express
+    links:
+      - mongo
+    container_name: "mongo-express"
+    ports:
+      - 8081:8081
