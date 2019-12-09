@@ -60,7 +60,7 @@ docker-compose stop
 docker-compose down -v
 ```
 
-##In you want to use docker without docker compose:
+## In you want to use docker without docker compose:
 
 1. run rabbitMQ 
 ```shell
