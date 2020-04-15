@@ -90,7 +90,7 @@ Mongo().getDBNames().forEach(function(x) {\
   }\
 })\
 "
-``
+```
 
 ## In you want to use docker without docker compose:
 
