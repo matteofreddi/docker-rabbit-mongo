@@ -60,6 +60,38 @@ docker-compose stop
 docker-compose down -v
 ```
 
+#### Reset:
+
+##### rabbitMQ:
+```shell
+docker-compose exec rabbit sh -c "rabbitmqctl stop_app; rabbitmqctl reset; rabbitmqctl start_app"
+```
+or
+```shell
+docker exec rabbit sh -c "rabbitmqctl stop_app; rabbitmqctl reset; rabbitmqctl start_app"
+```
+
+##### mongoDB:
+```shell
+docker-compose exec mongo mongo --eval "\
+Mongo().getDBNames().forEach(function(x) {\
+  if (['admin', 'config', 'local'].indexOf(x) < 0) {\
+    Mongo().getDB(x).dropDatabase();\
+  }\
+})\
+"
+```
+or
+```shell
+docker exec -it mongo mongo ir --eval "\
+Mongo().getDBNames().forEach(function(x) {\
+  if (['admin', 'config', 'local'].indexOf(x) < 0) {\
+    Mongo().getDB(x).dropDatabase();\
+  }\
+})\
+"
+``
+
 ## In you want to use docker without docker compose:
 
 1. run rabbitMQ 
