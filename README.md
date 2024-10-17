@@ -19,14 +19,19 @@ docker-compose up -d
 ## rabbitMQ
 
 - http://localhost:15672/
-- username: `guest`
-- password: `guest`
+- username: `admin`
+- password: `admin`
+
+## mongoDB
+
+- username: `admin`
+- password: `admin`  
 
 ## mongo-express
 
 - http://localhost:8081/
-- username: ``
-- password: ``
+- username: `admin`
+- password: `pass`
 
 #### Update container configuration
 
